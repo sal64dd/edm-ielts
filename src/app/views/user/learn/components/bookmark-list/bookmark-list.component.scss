@@ -1,0 +1,36 @@
+ul{
+  list-style: none;
+  padding: 0;
+  li{
+
+
+  }
+}
+.bookmark-range{
+  border-left: solid 4px #ddd;
+  padding-left: 8pt;
+  margin: 12pt 4pt;
+  .text{
+    font-style: italic;
+  }
+
+}
+
+.icon{
+  opacity: .2;
+}
+
+.no-content{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: solid 1px #ddd;
+  background-color: #eee;
+  padding: 12pt 8pt;
+  border-radius: 1.5rem;
+  opacity: .8;
+  .no-content-icon {
+    svg {height: 48pt; width: 48pt;}
+    margin-right: 20pt;
+  }
+}

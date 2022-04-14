@@ -1,0 +1,121 @@
+.dictonary{
+  text-align: left;
+  padding: 8pt 12pt;
+  user-select: none;
+
+  h1{
+    font-size: 18pt;
+  }
+
+  h2{
+    font-size: 14pt;
+  }
+
+  .title{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    .txt{
+      flex-grow: 1;
+    }
+    .save{
+      flex-grow: 0;
+      cursor: pointer;
+      .saved{
+        opacity: .5;
+      }
+      &:hover{
+        color: var(--mx-red);
+        .saved{opacity: 1; }
+      }
+    }
+  }
+
+  .def{
+    overflow: scroll;
+    max-height: 300pt;
+    max-width: 300pt;
+    font-weight: 400;
+  }
+}
+.dictonary{
+  width: 100%;
+  height: 100%;
+  .defination-found{
+
+  }
+  .defination-loading{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .defination-notfound{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    h1{
+      font-size: 12pt;
+    }
+  }
+}
+
+
+#annotatePopper{
+  position: absolute;
+  z-index: 100000 ;
+  background: #ffffff;
+  color: #000;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+
+#annotatePopper[data-popper-placement^='top'] > #arrow {
+  bottom: -4px;
+}
+
+#annotatePopper[data-popper-placement^='bottom'] > #arrow {
+  top: -4px;
+}
+
+#annotatePopper[data-popper-placement^='left'] > #arrow {
+  right: -4px;
+}
+
+#annotatePopper[data-popper-placement^='right'] > #arrow {
+  left: -4px;
+}
+
+.btn {
+  box-shadow: none;
+  border : none;
+  margin: 0;
+  &:hover{
+    box-shadow: none;
+    border: none;
+  }
+}

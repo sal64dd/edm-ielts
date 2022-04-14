@@ -1,0 +1,71 @@
+/* Doc-List */
+.listItem{
+  display: flex;
+  border-radius: 0.5rem;
+  align-items: center;
+  padding: 0;
+  background: #eee;
+  cursor: pointer;
+
+  .icon{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 8pt 12pt;
+    margin-right: 12pt;
+  }
+
+  .forward_arrow{
+    margin-right: 12pt;
+  }
+
+  &:hover{
+    background: #ddd;
+  }
+}
+
+.list{
+  list-style: none;
+  padding: 0;
+  li{
+    padding: 3pt 0pt;
+  }
+}
+
+
+.nav {
+  .nav-item{
+    .nav-link{
+      &.active {
+        background-color: var(--mx-red);
+        color: white;
+      }
+      transition: all .2s ease;
+      &:hover{
+        transform: translateY(-2pt);
+      }
+      color: var(--mx-red);
+      border: solid 1px #ddd;
+      margin: 4pt;
+    }
+  }
+}
+
+.tab-lising-content{
+  border-left: 8px solid #ededed;
+  margin-left: 5pt;
+}
+
+/* grid */
+.grid-item{
+  transition: all .2s ease;
+  border-radius: .5rem;
+  &:hover{
+    color: var(--mx-red);
+    border-color: var(--mx-red) !important;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    transform: translateY(-4px);
+  }
+}
+

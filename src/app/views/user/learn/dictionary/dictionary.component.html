@@ -1,0 +1,45 @@
+<mx-page [header]='{heading: category_name, back: true} '>
+
+  <div class="input-group rounded">
+    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+    aria-describedby="search-addon"  [formControl]="inputvalue"/>
+    <span class="input-group-text border-0" id="search-addon">
+      <i *ngIf="!search_loader" class="fas fa-search"></i>
+      <ion-spinner *ngIf="search_loader" name="circles" style="width: 12pt; height: 10pt;"></ion-spinner>
+    </span>
+  </div>
+
+  <ion-list class="search-list" *ngIf="selected.word == '' && selected.id == ''">
+    <ion-item *ngFor="let data of datas" (click)="detail(data.word,data.id)">
+      <span (change)="valChange()">{{data.word}}</span>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="selected.word != '' && selected.id != ''" style="display: block;">
+    <dictionaryInfo [(label)]="selected.word" [(id)]="selected.id"></dictionaryInfo>
+  </div>
+
+  <div>
+    <h3>Saved Words</h3>
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+
+      <div class="accordion-item" *ngFor="let w of dictionaryApi.savedWords; let i = index">
+        <h2 class="accordion-header" [id]="'flush-heading'+i">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse'+i" aria-expanded="false" [attr.aria-controls]="'flush-collapse' + i" >
+            {{w}}
+          </button>
+        </h2>
+        <div [id]="'flush-collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-heading' + i" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+              <dictionaryInfo [label]="w" [id]="w"></dictionaryInfo>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</mx-page>

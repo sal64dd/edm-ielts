@@ -1,0 +1,46 @@
+<div class="modal fade how d-block blur" [id]="id">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: none" *ngIf="showHeader">
+        <ng-content select="[header]"></ng-content>
+      </div>
+      <div class="modal-body" *ngIf="showBody">
+        <ng-content select="[body]"></ng-content>
+      </div>
+      <div class="modal-footer" style="border-top: none" *ngIf="showFooter">
+        <ng-content select="[footer]"> </ng-content>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<h5 class="modal-title">
+  <ng-content select="[title]"></ng-content>
+</h5>
+<button
+  type="button"
+  class="close bg-white"
+  data-dismiss="modal"
+  aria-label="Close"
+  (click)="cancel()"
+>
+  <span aria-hidden="true">&times;</span>
+</button> -->
+
+<!-- <button
+  *ngIf="btnSave"
+  type="button"
+  class="btn btn-primary"
+  (click)="submit()"
+>
+  Save changes
+</button>
+<button
+  type="button"
+  class="btn btn-secondary"
+  data-dismiss="modal"
+  (click)="cancel()"
+  *ngIf="btnCancel"
+>
+  Close
+</button> -->

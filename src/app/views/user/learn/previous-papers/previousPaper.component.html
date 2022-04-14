@@ -1,0 +1,46 @@
+<div class="ht-header">
+  <div class="his">
+    Total Test Papers <span class="text-red">{{ total_rows }}</span>
+  </div>
+  <div class="hist" (click)="history()">Archive</div>
+</div>
+<div class="questionList">
+  <div
+    class="questionList-item"
+    *ngFor="let data of datas"
+    (click)="paperDetails(data)"
+  >
+    <div class="text">
+      <div class="top-text">
+        <span class="btn-text">IELTS Test Paper </span>
+        <span class="new-text" *ngIf="data.tag_new">New</span>
+      </div>
+      <div class="bottom-text">
+        <div class="mp-icon">
+          <svg>
+            <use xlink:href="#speaking" />
+          </svg>
+        </div>
+        <span class="text">Speaking</span>
+        <div class="divider"></div>
+        <div class="mp-icon">
+          <svg>
+            <use xlink:href="#writing" />
+          </svg>
+        </div>
+        <span class="text">Writing</span>
+      </div>
+    </div>
+    <div class="move-forward">
+      <svg>
+        <use xlink:href="#back" />
+      </svg>
+    </div>
+  </div>
+  <div class="black-btn">
+    <button type="button" *ngIf="btn && datas.length > offset">
+      <ion-spinner *ngIf="loader" name="lines"></ion-spinner>
+      <p (click)="loading()" *ngIf="!loader">More</p>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div
+  class="card card-carousel overflow-hidden h-100 p-0"
+  style="min-height: 280px"
+>
+  <div
+    id="carouselExampleCaptions"
+    class="carousel slide h-100"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner border-radius-lg h-100 bg-dark">
+      <ng-container *ngFor="let item of CaroselList">
+        <div
+          class="carousel-item border h-100"
+          style="
+            background-image: url('assets/img/curved-images/curved14.jpg');
+            background-size: cover;
+          "
+        >
+          <div
+            class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5"
+          >
+            <div
+              class="icon icon-shape bg-white text-center border-radius-md mb-3"
+            >
+              <i
+                class="ni ni-camera-compact text-dark opacity-10 p-0 m-0"
+                style="font-size: 12pt"
+              ></i>
+            </div>
+            <h5 class="text-white mb-1">{{item.heading}}</h5>
+            <p>
+              There’s nothing I really wanted to do in life that I wasn’t able
+              to get good at.
+            </p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <button
+      class="carousel-control-prev w-5 me-3"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next w-5 me-3"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>

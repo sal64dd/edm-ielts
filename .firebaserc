@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "edms-test-1574a"
+  },
+  "targets": {
+    "edms-test-1574a": {
+      "hosting": {
+        "edmv2": [
+          "edms-test-1574a"
+        ]
+      }
+    }
+  }
+}

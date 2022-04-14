@@ -1,0 +1,38 @@
+<div class="card h-100">
+  <div class="card-header">
+    <h5 class="mb-0 text-capitalize">Progress track</h5>
+  </div>
+  <div class="card-body pt-0">
+    <ul class="list-group list-group-flush list">
+      <ng-container *ngFor="let item of modules">
+        <li class="list-group-item px-0">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <a href="javascript:;" class="avatar rounded-circle text-dark lead">
+                <i class="{{item.icon}}"></i>
+              </a>
+            </div>
+            <div class="col">
+              <h6>{{item.module}}</h6>
+              <div class="progress progress-xs mb-0">
+                <div
+                  class="progress-bar bg-primary"
+                  role="progressbar"
+                  [attr.aria-valuenow]="item.avgScore"
+                  aria-valuemin="0"
+                  aria-valuemax="9"
+                  [ngStyle]="{'width': ((item.avgScore / 9) * 100) + '%'}"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+
+
+  </div>
+  <div class="card-footer w-100 pt-0">
+    <a class="btn bg-gradient-primary mt-4" [routerLink]="['/user/test/report']" >View Detailed Report</a>
+  </div>
+</div>

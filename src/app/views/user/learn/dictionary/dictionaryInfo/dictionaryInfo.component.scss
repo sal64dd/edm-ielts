@@ -1,0 +1,107 @@
+
+
+  .search-word {
+    display: flex;
+    width: 100%;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1), 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+  }
+
+.word-title{
+  align-items: center;
+}
+
+  .search-word ::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+   .word-box {
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1), 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+    padding: 0 19px;
+    float: left;
+    width: 100%;
+    margin-top: 14px;
+    border-radius: 10px;
+  }
+   .word-info {
+    width: 70%;
+    float: left;
+    display: flex;
+  }
+
+
+  .word-info h5 {
+    font-size: 19px;
+    font-weight: bold;
+  }
+
+  .def-box p {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 0;
+    // line-height: 21px;
+  }
+
+  .def-box span {
+    color: #e1394a;
+  }
+
+  .def-result {
+    margin-top: 12px;
+    float: left;
+    width: 100%;
+  }
+  .audio-info {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .audio-btn {
+    margin: 9px 10px;
+  }
+
+  .audio-btn img {
+    width: 26px;
+  }
+
+  .word-info h5 {
+    margin-top: 9px;
+  }
+  .def-box {
+    background: #fee8ea;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+    float: left;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1), 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+
+  }
+
+  .def-result h6 {
+    color: #e1394a;
+    font-weight: 600;
+  }
+
+  .def-result ul {
+    list-style: none;
+    padding: 0 0 0 15px;
+  }
+
+  .def-result ul li::before {
+    content: "\2022";
+    color: #e1394a;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  .powered-text {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    float: left;
+    color: #e1394a;
+    font-size: 13px;
+  }

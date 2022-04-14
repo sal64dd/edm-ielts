@@ -1,0 +1,198 @@
+<mx-page [type]="1" [header]="{ heading: 'IELTS BAND CALCULATOR', back: true }">
+  <div role="main">
+    <div *ngIf="calSwitch === 'Conversion'">
+      <div class="band-form conversion">
+        <div class="band-box ">
+          <div class="band-title">Listening</div>
+          <div class="question-rel">
+            <div class="qt-list mx-4">
+              <p class="row">{{ this.calResult.listening.totalScore }}</p>
+              <span class="row" >Questions</span>
+            </div>
+            <div class="seprater"></div>
+            <div class="qt-list">
+              <select
+                id="Goal_l"
+                [value]="this.calResult.listening.marks"
+                (input)="listening($event)"
+                interface="action-sheet"
+                class=""
+              >
+                <option disabled selected value></option>
+                <option *ngFor="let data of this.calResult.listening.selectRange" [value]="data">
+                  {{ data }}
+                </option>
+              </select>
+              <span>Obtained Marks</span>
+            </div>
+          </div>
+          <div class="band-input">
+            <p>{{ this.calResult.listening.result }}</p>
+          </div>
+        </div>
+        <div class="band-box">
+          <div class="band-title">Reading <span>General Training</span></div>
+
+          <div class="question-rel">
+            <div class="qt-list">
+              <p>{{ this.calResult.readingGeneral.totalScore }}</p>
+              <span>Questions</span>
+            </div>
+            <div class="seprater"></div>
+            <div class="qt-list">
+              <select
+                id="Goal_l"
+                [value]="this.calResult.readingGeneral.marks"
+                (input)="readingGeneral($event)"
+                interface="action-sheet"
+                class=""
+              >
+                <option disabled selected value></option>
+                <option
+                  *ngFor="let data of this.calResult.readingGeneral.selectRange"
+                  [value]="data"
+                >
+                  {{ data }}
+                </option>
+              </select>
+              <span>Obtained Marks</span>
+            </div>
+          </div>
+          <div class="band-input">
+            <p>{{ this.calResult.readingGeneral.result }}</p>
+          </div>
+        </div>
+
+        <div class="band-box">
+          <div class="band-title">Reading <span>Academic</span></div>
+          <div class="question-rel">
+            <div class="qt-list">
+              <p>{{ this.calResult.readingAcademic.totalScore }}</p>
+              <span>Questions</span>
+            </div>
+            <div class="seprater"></div>
+            <div class="qt-list">
+              <select
+                id="Goal_l"
+                [value]="this.calResult.readingAcademic.marks"
+                (input)="readingAcademic($event)"
+                interface="action-sheet"
+                class=""
+              >
+                <option disabled selected value></option>
+                <option
+                  *ngFor="let data of this.calResult.readingAcademic.selectRange"
+                  [value]="data"
+                >
+                  {{ data }}
+                </option>
+              </select>
+              <span>Obtained Marks</span>
+            </div>
+          </div>
+          <div class="band-input">
+            <p>{{ this.calResult.readingAcademic.result }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="calSwitch === 'Calculator'">
+      <form [formGroup]="formBuilder">
+        <div class="band-form">
+          <div class="band-box">
+            <div class="band-title">Listening</div>
+            <div class="band-input">
+              <select
+                id="Goal_l"
+                formControlName="Goal_l"
+                interface="action-sheet"
+                class="bg-color"
+              >
+                <option *ngFor="let data of comm.bandScoreRange" [value]="data">{{ data }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="band-box">
+            <div class="band-title">Reading</div>
+            <div class="band-input">
+              <select
+                id="Goal_w"
+                formControlName="Goal_w"
+                interface="action-sheet"
+                class="bg-color"
+              >
+                <option *ngFor="let data of comm.bandScoreRange" [value]="data">{{ data }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="band-box">
+            <div class="band-title">Writing</div>
+            <div class="band-input">
+              <select
+                id="Goal_r"
+                formControlName="Goal_r"
+                interface="action-sheet"
+                class="bg-color"
+              >
+                <option *ngFor="let data of comm.bandScoreRange" [value]="data">{{ data }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="band-box">
+            <div class="band-title">Speaking</div>
+            <div class="band-input">
+              <select
+                id="Goal_s"
+                formControlName="Goal_s"
+                interface="action-sheet"
+                class="bg-color"
+              >
+                <option *ngFor="let data of comm.bandScoreRange" [value]="data">{{ data }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="band-box overall">
+            <div class="band-title">Overall</div>
+            <div class="band-input ot-text">
+              <p>{{ Goal_avg }}</p>
+            </div>
+          </div>
+
+          <!-- <div class="sb-btn">
+          <button type="button" class="button-cancel" part="button">Submit</button>
+          <div class="md-line"></div>
+          <button type="button" class="button-submit" part="button">Reset</button>
+
+        </div> -->
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div role="side">
+    <div class=" ">
+      <div class="gender row p-2 m-2 border">
+        <div class="gen-radio">
+          <div class="radio-items">
+            <input type="radio" name="role" id="rd1" value="Conversion" [(ngModel)]="calSwitch" />
+            <span class="checkmark"></span>
+            <span class="alphabet" for="rd1">
+              <p>Conversion</p>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="gender row p-2 m-2 border">
+        <div class="gen-radio">
+          <div class="radio-items">
+            <span class="alphabet" for="rd1">
+              <input type="radio" name="role" id="rd1" value="Calculator" [(ngModel)]="calSwitch" />
+              <span class="checkmark"></span>
+              <p>Calculator</p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mx-page>

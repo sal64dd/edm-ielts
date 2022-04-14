@@ -1,0 +1,16 @@
+<mx-page [header]="{heading: 'TIPS AND TRICKS - ' + title, back: true}">
+  <div id="Home">
+
+    <skeleton *ngIf="!skeleton"></skeleton>
+    <div *ngIf="skeleton">
+      <div class="q-a-box">
+        <div class="q-box" *ngFor="let data of datas; index as i; even as e">
+          <div class="{{e ? 'q-left-box' : 'a-right-box'}}"> <span>{{i+1}}</span> </div>
+          <div class="{{e ? 'q-right-box' : 'a-left-box'}}"> {{data.tip}} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mx-page>
+<error_msg (datatoparent)="Get_tips_tricks_child()" [(msg)]="error_msg_response.msg"
+  [(loading)]="error_msg_response.loading" *ngIf="error_msg_response.status"></error_msg>

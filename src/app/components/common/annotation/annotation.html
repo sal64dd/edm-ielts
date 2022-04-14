@@ -1,0 +1,61 @@
+<div class="noselect annotation-container">
+  <div class="noselect annotation-main" [innerHTML]="HTML"></div>
+
+  <div
+    id="annotatePopper" #popper
+    [ngStyle]="{
+      opacity: popupStatus === 'hidden'? '0': '1',
+		  pointerEvents: popupStatus === 'hidden'? 'none': 'auto'
+    }"
+  >
+    <div class="ant-content btn-group" *ngIf="popupStatus === 'default'">
+      <div
+        class="btn col"
+        *ngFor="let btn of default"
+        (mousedown)="btn.onclick()"
+      >
+        {{btn.text}}
+      </div>
+    </div>
+
+    <div class="ant-content" *ngIf="popupStatus === 'define'">
+      <div class="dictonary" *ngIf="definationStatus === 'found'">
+        <div class="title ">
+          <div class="col me-4">
+            <h1>{{ capitalizeFirstLetter(wordDefination.results[0].word) }}</h1>
+          </div>
+          <div class="col-auto ms-auto">
+            <div class="save ms-auto">
+              <i
+                *ngIf="!dictApi.checkSaved( wordDefination.results[0].word  )"
+                class="notsaved ri-heart-line"
+                (click)="dictApi.addSaved( wordDefination.results[0].word  )"
+              ></i>
+              <i
+                *ngIf="dictApi.checkSaved( wordDefination.results[0].word  )"
+                class="saved ri-heart-fill"
+                (click)="dictApi.removeSaved( wordDefination.results[0].word  )"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="def">
+          <p>{{ capitalizeFirstLetter (wordDefination.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]) }}.</p>
+        </div>
+      </div>
+      <div *ngIf="definationStatus === 'loading'">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div *ngIf="definationStatus === 'not-found'">
+        <h5>Defination not found.</h5>
+      </div>
+    </div>
+
+    <div id="arrow" data-popper-arrow></div>
+  </div>
+</div>
+
+

@@ -1,0 +1,97 @@
+<skeleton *ngIf="processing"></skeleton>
+<div *ngIf="!processing">
+    <div>
+        <div class="word-box">
+            <div class="word-title d-flex">
+
+                <div class="word-info">
+                    <h5>{{datas.word}}</h5>
+
+                </div>
+
+                <div
+                class="save ms-auto"
+              >
+                <mx-icon
+                  *ngIf="!dictionaryApi.checkSaved(datas.word)"
+                  [icon]="{type: 'ion', src: 'heart-outline'}"
+                  class="notsaved"
+                  [size]="21"
+                  (click)="dictionaryApi.addSaved(datas.word)"
+                ></mx-icon>
+                <mx-icon
+                  *ngIf="dictionaryApi.checkSaved(datas.word)"
+                  [icon]="{type: 'ion', src: 'heart'}"
+                  class="saved"
+                  [size]="21"
+                  (click)="dictionaryApi.removeSaved(datas.word)"
+                ></mx-icon>
+              </div>
+
+                <div class="audio-info" *ngIf="pronunciations.audioFile != ''">
+                    <div class="audio-btn"  (click)="playAudio()">
+                     <img *ngIf="audioPlay" src="./assets/img/volume.png">
+                     <img *ngIf="!audioPlay" src="./assets/img/volume_grey.png">
+                    </div>
+
+                    <audio #audio controls id="audio" style="display: none;" controlsList="nodownload">
+                        <source [src]="pronunciations.audioFile">
+                      </audio>
+                </div>
+            </div>
+
+            <div class="def-box">
+                <p *ngIf="pronunciations.dialects != ''">Dialects:<span>{{" "+pronunciations.dialects}}</span></p>
+                <p *ngIf="pronunciations.language != ''">Language:<span>{{" "+pronunciations.language}}</span></p>
+                <p *ngIf="pronunciations.phoneticNotation != ''"> Phonetic Notation:<span>{{" "+pronunciations.phoneticNotation}}</span></p>
+                <p *ngIf="pronunciations.phoneticSpelling != ''"> Phonetic Spelling:<span>{{" "+pronunciations.phoneticSpelling}}</span></p>
+                <p *ngIf="pronunciations.lexicalCategory != ''"> Catergory: <span>{{" "+pronunciations.lexicalCategory}}</span></p>
+            </div>
+
+            <div class="def-result">
+                <div *ngIf="pronunciations.etymologies != ''">
+                    <p><b>Etymologies:</b> {{pronunciations.etymologies}}</p>
+                </div>
+
+                <div *ngIf="pronunciations.definitions != ''">
+                    <p><b>Definition:</b> {{pronunciations.definitions}}</p>
+                </div>
+
+                <div *ngIf="pronunciations.definationexamples">
+                    <h6>Example:</h6>
+                    <ul>
+                        <li *ngFor="let data of pronunciations.definationexamples">{{data.text}}</li>
+                    </ul>
+                </div>
+
+                <div *ngIf="pronunciations.shortDefinitions != ''">
+                    <p><b>Short Definition:</b> {{pronunciations.shortDefinitions}}</p>
+                </div>
+
+                <!-- <p><b>Sub Defination:</b> Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. </p>
+                <h6>Example:</h6>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                -->
+
+                <div *ngIf="pronunciations.synonyms">
+                    <h6>Synonyms:</h6>
+
+                    <ul>
+                        <li *ngFor="let data of pronunciations.synonyms">{{data.text}}</li>
+                    </ul>
+                </div>
+
+                <div *ngIf="pronunciations.phrases">
+                    <h6>Phrases:</h6>
+                    <ul>
+                        <li *ngFor="let data of pronunciations.phrases">{{data.text}}</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <p class="powered-text">Powered by {{datas.metadata.provider}}</p>
+    </div>
+</div>
+

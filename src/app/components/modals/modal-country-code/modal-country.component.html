@@ -1,0 +1,11 @@
+<app-modal-default
+  [show]="show"
+  (output)="output.emit($event)"
+>
+  <div title>Select Country Code</div>
+  <div body>
+    <ul class="list-group list-group-flush " style="max-height: 60vh; overflow-y: scroll; transition: all 1s ease;">
+      <li class="list-group-item list-group-item-action " style="cursor: pointer" [class.active]="activeCode === item.value" *ngFor="let item of list" (click)="submit(item)">{{item.text}}</li>
+    </ul>
+  </div>
+</app-modal-default>

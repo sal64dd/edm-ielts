@@ -1,0 +1,55 @@
+<div [class]="'accordion accordion-flush ' + cls" [id]="id">
+
+  <div class="" *ngFor="let branch of tree?.children">
+    <ng-container *ngIf="branch.children?.length > 0">
+      <h2 class="accordion-header" [id]="'heading_' + branch.id ">
+        <button
+          class="accordion-button "
+          [ngClass]="{'collapsed': !isBranchActive(branch.id)}"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#' + 'collapse_' + branch.id"
+          aria-expanded="false"
+          [attr.aria-controls]="'collapse_' + branch.id"
+          (click)="clicked.emit([branch.id])"
+        >
+        {{branch.data | cap}}
+        </button>
+      </h2>
+      <div
+        [id]="'collapse_' + branch.id"
+        class="accordion-collapse "
+        [ngClass]="{'collapse': !isBranchActive(branch.id)}"
+        [attr.aria-labelledby]="'heading_' + branch.id "
+        [attr.data-bs-parent]="'#' + id"
+      >
+        <div class="">
+          <mx-accordian
+            [id]="'children_' + branch.id" [cls]="cls"
+            [tree]="branch"
+            [level]="level+1"
+            [path]="path"
+            (clicked)="clicked.emit([branch.id].concat($event))"></mx-accordian>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!branch.children || branch.children?.length === 0">
+      <h2 class="accordion-header" [id]="'heading_' + branch.id ">
+        <button
+          class="accordion-button accordian-no-child"
+          [ngClass]="{'collapsed': !isBranchActive(branch.id)}"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#' + 'collapse_' + branch.id"
+          aria-expanded="false"
+          [attr.aria-controls]="'collapse_' + branch.id"
+          (click)="clicked.emit([branch.id])"
+        >
+        {{branch.data | cap}}
+        </button>
+      </h2>
+    </ng-container>
+
+  </div>
+
+</div>

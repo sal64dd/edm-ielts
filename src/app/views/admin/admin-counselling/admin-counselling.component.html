@@ -1,0 +1,135 @@
+<div #main class="container-fluid py-4" style="height: 100vh">
+  <div class="row mt-4">
+    <!-- <ng-container *ngFor="let session of activeSessions | async">
+      <div class="col-lg-5">
+        <div class="card h-100 p-3">
+          <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('../assets/img/ivancik.jpg');">
+            <span class="mask bg-gradient-dark"></span>
+            <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+              <h5 class="text-white font-weight-bolder mb-4 pt-2">{{session.name}}</h5>
+              <p class="text-white">{{session.descp}}</p>
+              <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" (click)="onSessionStart(session['mod-link'])" href="javascript:;">
+                Enter
+                <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container> -->
+
+    <div class="col-lg-12 col-md-6 mb-md-0 mb-4">
+      <div class="card">
+        <div class="card-header pb-0">
+          <div class="row">
+            <div class="col-lg-6 col-7">
+              <h6>Live Counselling Requests</h6>
+              <p class="text-sm mb-0">
+                <i class="fa fa-user text-info" aria-hidden="true"></i>
+                <span class="font-weight-bold ms-1">{{(waitList | async)?.length}} User in Queue</span>
+              </p>
+            </div>
+            <div class="col-lg-6 col-5 my-auto text-end">
+              <div class="dropdown float-lg-end pe-4">
+                <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-ellipsis-v text-secondary"></i>
+                </a>
+                <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                  <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                  <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                  <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Full Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Country</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Intake
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Program
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let waitingUser of waitList | async">
+                  <td>
+                    <div class="d-flex px-2 py-1">
+
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{waitingUser['name']}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <span class="text-xs font-weight-bold"> {{waitingUser['country']}} </span>
+                    </div>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-xs font-weight-bold"> {{waitingUser['intake']}} </span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-xs font-weight-bold"> {{waitingUser['program']}} </span>
+                  </td>
+                  <td class="align-middle text-center text-sm ">
+                    <button class="btn btn-primary m-0 text-xs font-weight-bold" (click)="startSession(waitingUser)">
+                      Start Session </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- <div class="row mt-4 ">
+    <div class="col-lg-7 mb-lg-0 mb-4">
+      <div class="card">
+        <div class="card-body p-3">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="d-flex flex-column h-100">
+                <p class="mb-1 pt-2 text-bold"></p>
+                <h5 class="font-weight-bolder">Live Counselling Session</h5>
+                <p class="mb-5">Directly talk one-to-one with active users of the platform.</p>
+                <a class=" btn btn-secondary  font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;" (click)="showSessionModal = true;">
+                  Start New Session
+                  <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+              <div class="bg-gradient-primary border-radius-lg h-100">
+                <img src="../assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
+                <div class="position-relative d-flex align-items-center justify-content-center h-100  ">
+                  <div  class="w-100 h-100   position-relative z-index-2 border-round" style="overflow: hidden; background-image: url('../assets/img/bgs/live-counselling.jpg'); background-size: cover;" alt="rocket"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card h-100 p-3">
+
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<app-admin-counselling-session *ngIf="showLiveSessionModal" [show]="showLiveSessionModal"
+  (output)="showLiveSessionModal = false" [activeSessionId]="activeSessionId"></app-admin-counselling-session>

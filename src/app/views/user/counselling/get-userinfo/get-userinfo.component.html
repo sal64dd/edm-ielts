@@ -1,0 +1,134 @@
+<app-modal-default [show]="show" (output)="output.emit($event)" [bgstyle]="'dark'">
+  <div title>
+    Tell us more about you first!
+  </div>
+
+  <div body>
+    <form [formGroup]="userData">
+
+      <div class="form-group">
+        <label for="userName">Full Name</label>
+        <input type="text" class="form-control" id="userName" value="John Doe" formControlName="name">
+        <div class="err mb-2" *ngIf="name.touched && name.errors">
+          <p color="text-danger">Please enter your Name.</p>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" value="example@domain.com" formControlName="email">
+        <div class="err mb-2" *ngIf="email.touched && email.errors">
+          <p color="text-danger">Please enter valid email address</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Preferred Country</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="country">
+          <option>Canada</option>
+          <option>USA</option>
+          <option>UK</option>
+          <option>Australia</option>
+          <option>Others</option>
+        </select>
+        <div class="err mb-2" *ngIf="country.touched && country.errors">
+          <p color="text-danger">Please select an option.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Preferred Intake</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="intake">
+          <option>May 2022</option>
+          <option>Sept 2022</option>
+          <option>Jan 2023</option>
+          <option>May 2023</option>
+          <option>Sept 2023</option>
+        </select>
+        <div class="err mb-2" *ngIf="intake.touched && intake.errors">
+          <p color="text-danger">Please select an option.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Preferred Program Intake</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="program">
+          <option>Post Graduate Diploma</option>
+          <option>Masters</option>
+          <option>UG</option>
+          <option>MBA</option>
+          <option>PhD</option>
+          <option>Not decided</option>
+        </select>
+        <div class="err mb-2" *ngIf="program.touched && program.errors">
+          <p color="text-danger">Please select an option.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Status of IELTS / TOEFL exam</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="englishTest">
+          <option>Not Decided</option>
+          <option>Given</option>
+          <option>Booked in Next 2 Months</option>
+          <option>Planning in Next 2 Months</option>
+        </select>
+        <div class="err mb-2" *ngIf="englishTest.touched && englishTest.errors">
+          <p color="text-danger">Please select an option.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Highest Education</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="highestEducation">
+          <option>10th Standard</option>
+          <option>12th Standard</option>
+          <option>Bachelor's Degree</option>
+          <option>Master's Degree</option>
+          <option>MBBS / MD Degree</option>
+        </select>
+        <div class="err mb-2" *ngIf="highestEducation.touched && highestEducation.errors">
+          <p color="text-danger">Please select an option.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Grades</label>
+        <input type="text" class="form-control" id="userName" value="0.0" formControlName="grades">
+        <div class="err mb-2" *ngIf="grades.touched && grades.errors">
+          <p color="text-danger">Please enter your grade.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Year of Graduation of your Highest Education</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="year">
+          <option>After 2023</option>
+          <option>2023</option>
+          <option>2022</option>
+          <option>2021</option>
+          <option>2020</option>
+          <option>2019</option>
+          <option>Before 2019</option>
+        </select>
+        <div class="err mb-2" *ngIf="year.touched && year.errors">
+          <p color="text-danger">Please select an option.</p>
+        </div>
+      </div>
+
+    </form>
+
+    <span>Please Fill all the fields in the form above. </span>
+
+    <div class="modal-footer mb-0 pb-0 border-none text-center justify-content-center">
+      <button type="button" class="btn  btn-primary icon-move-right font-weight-bold mb-0 mt-auto"
+        [disabled]="userDataErrors()" (click)="submit()">
+        Start Counselling
+        <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+      </button>
+    </div>
+
+  </div>
+</app-modal-default>

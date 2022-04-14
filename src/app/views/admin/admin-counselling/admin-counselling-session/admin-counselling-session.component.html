@@ -1,0 +1,18 @@
+<app-modal-default [className]="'modal-fullscreen'" [show]="show" (output)="output.emit($event)" [noHeader]="false"
+  [bodyStyle]="'h-100 p-0'" [titleStyle]="''">
+  <div title>Live Counselling Session</div>
+  <div body class="h-100">
+    <app-modal-live-session *ngIf="activeSession" [sessionId]="activeSession['mod-link']" [isModerated]="true">
+    </app-modal-live-session>
+    <div *ngIf="!activeSession" class="d-flex flex-column h-100 align-items-center justify-content-center">
+
+      <span class="d-flex align-items-center ">
+        <span class="spinner-border"></span>
+        <span class="ms-2 h6"></span>
+      </span>
+      <span>Please wait.</span>
+      <!-- <span *ngIf="addedToWaitlist">You are <b>number {{'2'}}</b> on the wait list. Please wait a few minutes.</span> -->
+
+    </div>
+  </div>
+</app-modal-default>

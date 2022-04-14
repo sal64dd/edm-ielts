@@ -1,0 +1,53 @@
+<app-basic-modal>
+  <div class="modal-content">
+    <div class="modal-header" style="border-bottom: none">
+      <h5 class="modal-title ms-1">Select Module</h5>
+      <button
+        type="button"
+        style="font-size: 14pt"
+        class="zoom darken btn border-none shadow-none close bg-white"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="close()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul class="list-group ">
+        <ng-container *ngFor="let item of testCat | async as list">
+          <li
+          class="list-group-item cursor-pointer border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg darken"
+          (click)="submit(item)"
+        >
+          <div class="d-flex align-items-center">
+            <div
+              class="icon icon-shape icon-sm ms-3 me-3 bg-gradient-dark shadow text-center text-lead"
+            >
+            <i class="ri-article-fill" style="font-size: 13pt;"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <h6 class="mb-1 text-dark text-sm">{{item.category_name}}</h6>
+              <span class="text-xs font-weight-bold">Total Questions: {{item.totalQuest}} </span>
+              <span class="text-xs font-weight-bold">Paper Duration: {{item.paperDuration}} </span>
+              <span class="text-xs font-weight-bold">Attempts: {{attempts(item)}}</span>
+
+            </div>
+          </div>
+          <div class="d-flex">
+            <button
+              class="btn btn-link me-0 pe-2 btn-rounded text-dark icon-move-right my-auto"
+            >
+              <i class="ri-arrow-right-line text-lg my-0 py-0" aria-hidden="true"></i>
+            </button>
+          </div>
+        </li>
+        </ng-container>
+
+      </ul>
+
+      <app-comm-loading *ngIf="status === 'loading'"></app-comm-loading>
+      <app-comm-err-500 *ngIf="status === 'error'"></app-comm-err-500>
+    </div>
+  </div>
+</app-basic-modal>
