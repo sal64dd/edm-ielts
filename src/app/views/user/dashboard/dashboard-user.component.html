@@ -1,11 +1,26 @@
 <div #main class="container-fluid py-4">
-
-  <app-top-elements [TopElemList]="TopElemList"></app-top-elements>
+  <app-top-elements></app-top-elements>
 
   <div class="row mt-md-4">
     <!-- carosel -->
-    <div class="col-lg-7 mb-4 mb-lg-0">
-      <app-carosel [CaroselList]="CaroselList"></app-carosel>
+    <div
+      class="col-lg-7 mb-4 mb-lg-0 overflow-hidden position-relative"
+      style="min-height: 450px"
+    >
+      <!-- <app-carosel [CaroselList]="CaroselList"></app-carosel> -->
+      <ngb-carousel *ngIf="CaroselList">
+        <ng-container *ngFor="let item of CaroselList">
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="item.img" alt="Random first slide" />
+          </div>
+          <div class="carousel-caption text-white">
+            <h3 class="text-white">{{item.heading}}</h3>
+            <p class="text-white">{{item.text}}</p>
+          </div>
+        </ng-template>
+      </ng-container>
+      </ngb-carousel>
     </div>
 
     <div class="col-lg-5 ms-auto mt-lg-0">
@@ -17,19 +32,35 @@
 
       <div class="row mt-4">
         <div class="col-6">
-          <app-module-elem [module]="'Listening'" [level]="'Beginner'"></app-module-elem>
+          <app-module-elem
+            [module]="'Listening'"
+            [level]="'Beginner'"
+            [learnRoute]="['/user/learn/wiki/1/46']"
+          ></app-module-elem>
         </div>
         <div class="col-6">
-          <app-module-elem [module]="'Reading'" [level]="'Beginner'"></app-module-elem>
+          <app-module-elem
+            [module]="'Reading'"
+            [level]="'Beginner'"
+            [learnRoute]="['/user/learn/wiki/1/44']"
+          ></app-module-elem>
         </div>
       </div>
 
       <div class="row mt-4">
         <div class="col-6">
-          <app-module-elem [module]="'Writing'" [level]="'Beginner'"></app-module-elem>
+          <app-module-elem
+            [module]="'Writing'"
+            [level]="'Beginner'"
+            [learnRoute]="['/user/learn/wiki/1/45']"
+          ></app-module-elem>
         </div>
         <div class="col-6">
-          <app-module-elem [module]="'Speaking'" [level]="'Beginner'"></app-module-elem>
+          <app-module-elem
+            [module]="'Speaking'"
+            [level]="'Beginner'"
+            [learnRoute]="['/user/learn/wiki/1/47']"
+          ></app-module-elem>
         </div>
       </div>
     </div>
@@ -38,7 +69,7 @@
   <!-- Progress -->
   <div class="row mt-4">
     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-     <app-leader-list-box></app-leader-list-box>
+      <app-leader-list-box></app-leader-list-box>
     </div>
     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
       <app-task-list-box></app-task-list-box>
@@ -54,7 +85,7 @@
       <!-- events -->
       <div class="row mb-4">
         <div class="col-12">
-         <app-event-list-box></app-event-list-box>
+          <app-event-list-box></app-event-list-box>
         </div>
       </div>
 

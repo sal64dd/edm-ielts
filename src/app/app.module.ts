@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -29,8 +28,12 @@ import { TestV3ApiService } from './services/test-v3-api.service';
 import { ModalControllerService } from './services/modal-controller.service';
 import { EdmCommonModule } from './components/common/ed-common.module';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { NgChartsModule } from 'ng2-charts';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
 const routes: Routes = [
   {
@@ -45,13 +48,19 @@ const routes: Routes = [
   },
 ];
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 @NgModule({
   declarations: [
-    AppComponent, UnAuthLayoutComponent, ModalEvalTestComponent
+    AppComponent, UnAuthLayoutComponent, ModalEvalTestComponent,
   ],
   imports: [
-    BrowserModule,
     RouterModule.forRoot(routes),
+    CarouselModule,
+    BrowserAnimationsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -68,6 +77,7 @@ const routes: Routes = [
     HttpClientModule,
     EdmCommonModule,
     NgChartsModule,
+    FullCalendarModule
   ],
   providers: [
     ScreenTrackingService, CommonUiService, CommonApiService,

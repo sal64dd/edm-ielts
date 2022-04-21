@@ -1,4 +1,6 @@
 <div #main class="container-fluid py-4" style="height: 100vh">
+  <app-top-elements></app-top-elements>
+  <hr class="horizontal dark mt-4" />
   <div class="row mt-4">
     <div class="col-lg-7 col-md-12">
       <div class="card">
@@ -49,7 +51,7 @@
           <h6 class="text-center mb-0">IELTS Mock Test</h6>
           <span class="text-xs">Full Three-hour IELTS Tests.</span>
           <hr class="horizontal dark my-3" />
-          <a class="btn btn-primary">Book Now</a>
+          <a class="btn btn-primary" (click)="mock()">Book Now</a>
         </div>
       </div>
     </div>

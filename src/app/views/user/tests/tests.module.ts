@@ -17,6 +17,7 @@ import { PracticeTestModuleComponent } from './components/practice-test-list/com
 import { OverviewChartComponent } from './components/overview-chart/overview-chart.component';
 import { DetailReportChartComponent } from './components/detail-report-chart/detail-report-chart.component';
 import { NgChartsModule } from 'ng2-charts';
+import { MockModalComponent } from './components/mock-modal/mock-modal.component';
 
 export const routes: Routes = [{ path: '', component: TestsComponent }];
 
@@ -44,7 +45,8 @@ FullCalendarModule.registerPlugins([
     MockSlotComponent,
     PracticeTestModuleComponent,
     OverviewChartComponent,
-    DetailReportChartComponent
+    DetailReportChartComponent,
+    MockModalComponent
   ],
   providers: [],
 })

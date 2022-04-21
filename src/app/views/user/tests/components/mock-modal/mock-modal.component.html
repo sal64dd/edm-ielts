@@ -1,0 +1,86 @@
+<app-basic-modal>
+  <div class="modal-content">
+    <div class="modal-header" style="border-bottom: none">
+      <h5 class="modal-title ms-1">Book Mock Test</h5>
+      <button
+        type="button"
+        style="font-size: 14pt"
+        class="zoom darken btn border-none shadow-none close bg-white"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="close()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+        <!-- hero section -->
+    <section class="hero-content">
+      <div class="bg"></div>
+      <h3>Test yourself under actual exam conditions.</h3>
+
+
+      <div class="modules d-flex flex-column flex-md-row">
+        <div class="module-item "
+          *ngFor="let module of modules">
+          <div class="module-item-inner">
+            <!-- img -->
+            <div class="img-wrapper me-2">
+              <img [src]="module.icon">
+            </div>
+
+            <!-- text -->
+            <div class="right-text">
+              <span class="mod-title lead">
+                {{module.category_name}}
+              </span>
+              <div class="mod-info text-secondary text-sm question-number">
+              <i class="fas fa-caret-right"></i> {{module.info1}}
+              </div>
+              <div class="mod-info text-secondary text-sm time-limit">
+              <i class="fas fa-caret-right"></i> {{module.info2}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-instructions my-3 alert alert-warning">
+        <b>Note:</b> Once you start the test you can not quit.
+      </div>
+    </section>
+
+    <!-- Listing Section -->
+    <section class="listing">
+      <div class="list-header">
+        <h4>Mock Test Sets</h4>
+        <p> Select one of the following Test Sets </p>
+      </div>
+      <app-comm-loading *ngIf="status === 'loading'"></app-comm-loading>
+      <app-comm-err-500 *ngIf="status === 'error'"></app-comm-err-500>
+      <div class="list-content" *ngIf="status === 'found'">
+        <div class="list-item"
+          *ngFor="let test of tests; let i = index"
+          (click)="startTest(test)" >
+          <div class="list-item-inner alert">
+            <!-- title -->
+            <div class="list-title lead">Mock Test {{i+1}}</div>
+            <!-- lock -->
+            <div class="lock" [class.d-none]="!test.locked" >
+              <i class="ri-lock-fill"></i>
+            </div>
+            <!-- forward -->
+            <div class="move-forward" [class.d-none]="test.locked">
+              Start Test
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    </div>
+  </div>
+</app-basic-modal>

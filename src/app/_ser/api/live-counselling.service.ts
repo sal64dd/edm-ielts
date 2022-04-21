@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 const resources = {
   activeSessions: 'live-counselling-sessions',
@@ -15,14 +14,16 @@ export class LiveCounsellingService {
   }
 
   getSessions(){
-    return collectionData(collection(this.store, resources.activeSessions));
+    console.log('get sess');
+    return collectionData
+    (collection(this.store, resources.activeSessions));
   }
 
   getWaitlist(){
     return this.afs.collection(resources.waitlist).valueChanges({idField: 'id'});
   }
 
-  createSession(sessionId, userData){
+  createSession(sessionId: any, userData: any){
     this.afs.collection(resources.waitlist).doc(userData.id).delete();
 
     return this.afs.collection(resources.activeSessions).add({
@@ -33,11 +34,11 @@ export class LiveCounsellingService {
 
   }
 
-  addUserToWaitlist(res){
+  addUserToWaitlist(res: any){
     return this.afs.collection(resources.waitlist).add(res);
   }
 
-  getSessionWithUserId(id){
+  getSessionWithUserId(id: any){
     return this.afs.collection(resources.activeSessions, ref => ref.where('userid', '==', id)).valueChanges().pipe(map(s => {
       if(s && s?.length > 0){
         return s;
@@ -47,7 +48,7 @@ export class LiveCounsellingService {
     }));
   }
 
-  getSessionWithId(id){
+  getSessionWithId(id: any){
     return this.afs.collection(resources.activeSessions).doc(id).valueChanges().pipe(map(s => {
       if(s){
         return s;

@@ -10,49 +10,54 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { iAPIResultv2 } from '../types/api-types';
 import { routes } from '../views/user/user.module';
+import { CommonAuthService } from './common-auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: CommonAuthService) {}
 
-  request(t: {
+  request({
+    method,
+    url,
+    headers,
+    body,
+    auth,
+  }: {
     method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-    route: string;
-    headers?: {[header: string]: string};
-    body?: {[header: string]: string};
+    url: string;
+    headers?: { [header: string]: string };
+    body?: { [header: string]: string };
     auth?: boolean;
   }): Observable<iAPIResultv2> {
-
     const options: any = {};
-    if(t.headers) options.headers = t.headers;
-    if(t.body) options.body = t.body;
+    if (headers) options.headers = headers;
+    if (body) options.body = body;
 
-    const url = environment.api + routes;
+    if (auth) {
+      if (!options.headers) options.headers = {};
+      options.headers['token'] = this.auth.User.UUID;
+    }
 
-    return this.http.request(t.method, url, options).pipe(
-      map((res:any):iAPIResultv2 => {
+    return this.http.request(method, url, options).pipe(
+      map((res: any): iAPIResultv2 => {
         const result: iAPIResultv2 = {
           success: false,
-        }
+        };
 
-        if(!res) {
-          result.message = 'Null Respose'
+        if (!res) {
+          result.message = 'Null Respose';
           return result;
         }
+        if (res.error_message.success) result.success = true;
 
-        if(res.success)
-          res.success = true;
+        if (res.error_message.message) result.message = res.error_message.message;
 
-        if(res.message)
-          result.message = res.message;
-
-        if(res.data)
-          result.data = res.data;
+        result.data = res.error_message.data;
 
         return result;
-      }),
+      })
     );
   }
 }

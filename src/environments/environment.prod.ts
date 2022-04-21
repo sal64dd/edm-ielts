@@ -10,5 +10,7 @@ export const environment = {
     measurementId: 'G-LW30HJ0TBT',
   },
   production: true,
-  api: 'https://localhost:8000/api/'
+  api: 'https://localhost:8000/api/',
+  url: 'https://masterprep.info/newV1',
+  apiVersion: '/MP-API-V7',
 };

@@ -1,0 +1,100 @@
+/* TestList */
+.hero-content{
+  position: relative;
+  padding-bottom: 12pt;
+  .bg{
+    position: absolute;
+    top: -40pt;
+    left: -100%;
+    right: -100%;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .modules{
+    flex-wrap: wrap;
+    .module-item{
+      padding: 8pt 8pt;
+      flex-basis: 50%;
+      flex-grow: 1;
+      .module-item-inner{
+        border-radius: 1.5rem;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        padding: 6pt 4pt;
+        display: flex;
+        flex-direction: row;
+        background-color: #fff;
+        align-items: center;
+        padding: 6pt 12pt;
+
+        .img-wrapper{
+          width: 5pt;
+          overflow: hidden;
+          display: none;
+        }
+        .mod-info{
+        }
+      }
+    }
+  }
+}
+.listing{
+  .list-content{
+    display: flex;
+    flex-direction: column;
+    .list-item{
+      padding: 4pt 0pt;
+      .list-item-inner{
+        padding: 6pt 12pt;
+        border: solid 1px #ddd;
+        border-radius: .5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all .2s ease;
+        cursor: pointer;
+        &:hover{
+          border-color: var(--mx-red);
+          color: var(--mx-red);
+          transform: translateY(-4pt);
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+      }
+    }
+  }
+}
+
+.page{
+  // border: solid 1px black;
+  position: absolute;
+  left:0;
+  .hero{
+    margin-top: 35pt;
+    // border: solid 1px black;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 100vw;
+    width: 100vw;
+    .central-circle{
+      width: 45%;
+      height: 45%;
+      border-radius: 100%;
+      border: solid 1px black;
+      position: relative;
+      margin:0; padding: 0;
+      .smaller-circles{
+        margin:0; padding: 0;
+        border: solid 1px black;
+        border-radius: 100%;
+        position: absolute;
+        background-color: #eee;
+        transition: all .5s ;
+      }
+    }
+  }
+}
+.circle-main{
+
+}

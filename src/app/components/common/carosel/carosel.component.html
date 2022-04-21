@@ -1,4 +1,4 @@
-<div
+<!-- <div
   class="card card-carousel overflow-hidden h-100 p-0"
   style="min-height: 280px"
 >
@@ -12,7 +12,7 @@
         <div
           class="carousel-item border h-100"
           style="
-            background-image: url('assets/img/curved-images/curved14.jpg');
+            background-image: url('{{item.img}}');
             background-size: cover;
           "
         >
@@ -51,8 +51,15 @@
       data-bs-target="#carouselExampleCaptions"
       data-bs-slide="next"
     >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="carousel-control-next-icon" aria-hiddenst="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+</div> -->
+<div class="h-100 border position-absolute top-0 left-0 bottom-0 right-0 w-100 overflow-hidden">
+<owl-carousel-o [options]="customOptions">
+  <ng-container *ngFor="let x of [1,2,3,4]">
+  <ng-template carouselSlide ><img class="border" src="/assets/imgs/carosel/1.jpg"></ng-template>
+  </ng-container>
+</owl-carousel-o>
 </div>

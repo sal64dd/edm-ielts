@@ -1,7 +1,10 @@
 <div #main class="container-fluid py-4">
-  <app-top-elements [TopElemList]="TopElemList"></app-top-elements>
+  <app-top-elements ></app-top-elements>
   <hr class="horizontal dark mt-4" />
-  <div class="row mt-4">
+
+      <app-learn-blogstyle></app-learn-blogstyle>
+
+  <!-- <div class="row mt-4">
     <ng-container *ngFor="let item of modules; let i = index">
       <div class="col-lg-4 col-sm-12 mt-4 mt-lg-0 zoom cursor-pointer" *ngIf="i == 0">
         <app-elem [data]="item"></app-elem>
@@ -10,7 +13,8 @@
         <app-elem [data]="item"></app-elem>
       </div>
     </ng-container>
-  </div>
+
+  </div> -->
 
   <div class="row mt-4">
     <div class="col-md-5 mt-md-0 mt-4">
@@ -21,7 +25,9 @@
         <div class="card">
           <div class="card-body border-radius-lg bg-gradient-dark p-3">
             <h6 class="mb-0 text-white">Tips and Tricks</h6>
-            <p class="text-white text-sm mb-4"></p>
+            <p class="text-white mt-2">
+              "Understand the questions carefully and focus on finding answers from the passage."
+            </p>
             <button class="btn bg-gradient-light mb-0">More Tips</button>
           </div>
         </div>
@@ -48,7 +54,7 @@
                     class="text-secondary text-sm ms-1">noun | fyoo-NAM-buh-liz-um
                   </span>
                 </h4>
-                <a href="javascript:;" class="col flex-shrink-1 flex-grow-0 btn btn-outline-dark mb-0 ms-auto">More</a>
+                <a href="javascript:;" class="col flex-shrink-1 flex-grow-0 btn btn-outline-dark mb-0 ms-auto" (click)="dictModal()">More</a>
               </div>
 
               <div class="row mt-2">

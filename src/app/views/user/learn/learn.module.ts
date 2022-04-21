@@ -6,6 +6,9 @@ import { LearnComponent } from './learn.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ElemComponent } from './components/elem/elem.component';
 import { BookmarkListComponent } from './components/bookmark-list/bookmark-list.component';
+import { LearnBlogstyleComponent } from './components/learn-blogstyle/learn-blogstyle.component';
+import { DictModalComponent } from './components/dict-modal/dict-modal.component';
+import { DictionaryInfoComponent } from './dictionary/dictionaryInfo/dictionaryInfo.component';
 
 export const routes: Routes = [
   {
@@ -33,7 +36,7 @@ export const routes: Routes = [
 @NgModule({
   imports: [CommonModule, EdmCommonModule, RouterModule.forChild(routes)],
   exports: [],
-  declarations: [LearnComponent, ElemComponent, BookmarkListComponent],
+  declarations: [LearnComponent, ElemComponent, BookmarkListComponent, LearnBlogstyleComponent, DictModalComponent, DictionaryInfoComponent],
   providers: [],
 })
 export class LearnModule {}

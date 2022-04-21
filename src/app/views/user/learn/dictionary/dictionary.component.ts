@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DictionaryServices } from '../../../services/api/dictionary.service';
-import { NavController } from '@ionic/angular';
-import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
-import { CommonService } from '../../../services/core/common.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { DictionaryServices } from 'src/app/services/dictionary.service';
 @Component({
   selector: 'dictionary',
   templateUrl: 'dictionary.component.html',
@@ -22,9 +19,7 @@ export class DictionaryComponent implements OnDestroy, OnInit {
   icon: any;
   category_name: any;
   inputvalue = new FormControl('');
-  constructor(public route: ActivatedRoute, public navCtr: NavController, public dictionaryApi: DictionaryServices, public comm: CommonService) {
-    this.icon = this.route.snapshot.params.icon;
-    this.category_name = this.route.snapshot.params.category_name;
+  constructor(public route: ActivatedRoute, public router: Router, public dictionaryApi: DictionaryServices) {
   }
 
   ngOnInit() {
@@ -32,22 +27,6 @@ export class DictionaryComponent implements OnDestroy, OnInit {
       this.change(v);
       console.log(v)
     });
-
-    // this.eventUnsubscribe = fromEvent(
-    //   document.getElementById('getVal'),
-    //   'input'
-    // )
-    //   .pipe(debounceTime(300), distinctUntilChanged())
-    //   .subscribe((event) => {
-    //     this.change(event);
-    //   });
-
-    // this.emptyeventUnsubscribe = fromEvent(
-    //   document.getElementById('getVal'),
-    //   'input'
-    // ).subscribe((event) => {
-    //   this.datas = [];
-    // });
   }
 
   valChange() {
@@ -55,7 +34,7 @@ export class DictionaryComponent implements OnDestroy, OnInit {
     this.selected = { word: '', id: '' };
   }
 
-  change(e) {
+  change(e: string) {
     this.selected = { word: '', id: '' };
     try {
       if (this.dictionaryApiUbsubscribe) {
@@ -77,7 +56,6 @@ export class DictionaryComponent implements OnDestroy, OnInit {
       },
       (err) => {
         this.search_loader = false;
-        this.comm.commonError(err);
       }
     );
   }
@@ -107,7 +85,7 @@ export class DictionaryComponent implements OnDestroy, OnInit {
     } catch (err) {}
   }
 
-  detail(word, id) {
+  detail(word: string, id: string) {
     this.selected = { word, id };
   }
 }

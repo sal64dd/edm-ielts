@@ -10,12 +10,18 @@ export class OverviewChartComponent implements OnInit {
 
 
   public lineChartData: ChartData = {
+    labels: [0,1,2,3,5,6],
     datasets: [{
       type: 'line',
-      label: 'Your Average',
-      data: [0,3.5,5,7.5,9,3.5,5]
-    },
-   ]
+      label: 'You',
+      data: [4.5,5,6,7.5,7,5.5],
+    }, {
+        type: 'line',
+        label: 'Edmissions Average',
+        data: [6.0, 6.0, 6.0, 6.0, 6.0,6.0],
+        borderColor: 'green',
+      }
+    ]
   };
 
 

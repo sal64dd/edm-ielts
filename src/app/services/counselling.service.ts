@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import {
-  ClientCounsellingData,
-} from '../types/counselling-types';
 import { map } from 'rxjs/operators';
-
 const resources = {
   activeSessions: 'live-counselling-sessions',
   waitlist:'user-waitlist'
@@ -17,15 +13,19 @@ export class CounsellingClientService {
   constructor(private store: Firestore, private afs: AngularFirestore) {
   }
 
+
+
   getSessions(){
-    return collectionData(collection(this.store, resources.activeSessions));
+    console.log('get sess');
+    return collectionData
+    (collection(this.store, resources.activeSessions));
   }
 
   getWaitlist(){
     return this.afs.collection(resources.waitlist).valueChanges({idField: 'id'});
   }
 
-  createSession(sessionId: string, userData: ClientCounsellingData){
+  createSession(sessionId: any, userData: any){
     this.afs.collection(resources.waitlist).doc(userData.id).delete();
 
     return this.afs.collection(resources.activeSessions).add({
@@ -36,11 +36,11 @@ export class CounsellingClientService {
 
   }
 
-  addUserToWaitlist(res: ClientCounsellingData){
+  addUserToWaitlist(res: any){
     return this.afs.collection(resources.waitlist).add(res);
   }
 
-  getSessionWithUserId(id: string){
+  getSessionWithUserId(id: any){
     return this.afs.collection(resources.activeSessions, ref => ref.where('userid', '==', id)).valueChanges().pipe(map(s => {
       if(s && s?.length > 0){
         return s;
@@ -50,8 +50,8 @@ export class CounsellingClientService {
     }));
   }
 
-  getSessionWithId(id: string){
-    return this.afs.collection(resources.activeSessions).doc(id).valueChanges().pipe(map((s: any) => {
+  getSessionWithId(id: any){
+    return this.afs.collection(resources.activeSessions).doc(id).valueChanges().pipe(map(s => {
       if(s){
         return s;
       } else{

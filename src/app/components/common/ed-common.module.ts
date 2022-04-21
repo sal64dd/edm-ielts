@@ -17,6 +17,8 @@ import { RouterModule } from '@angular/router';
 import { MxAnnotationComponent } from './annotation/mx-annotate.component';
 import { ModalAdhocDirective } from './modal-adhoc.directive';
 import { BasicModalComponent } from './basic-modal/basic-modal.component';
+import { MultiStepFormComponent } from './multi-step-form/multi-step-form.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { BasicModalComponent } from './basic-modal/basic-modal.component';
     ReactiveFormsModule,
     PipesModule,
     NgbCarouselModule,
-    RouterModule
+    RouterModule,
+    CarouselModule
   ],
   exports: [
     MxAnnotationComponent,
@@ -61,7 +64,8 @@ import { BasicModalComponent } from './basic-modal/basic-modal.component';
     EventListBoxComponent,
     LeaderListBoxComponent,
     ModalAdhocDirective,
-    BasicModalComponent
+    BasicModalComponent,
+    MultiStepFormComponent
   ],
   providers: [],
 })

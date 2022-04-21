@@ -15,7 +15,7 @@ export class CommonAuthService {
    ID: "964",
    UUID: "2af6db59b1e2ffa631ac4486ec4a92cd",
    type: "STUDENT",
-   name: "Shaurya"
+   name: "John Doe"
   };
 
 

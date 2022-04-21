@@ -1,0 +1,81 @@
+<app-basic-modal>
+  <div class="modal-content" style="min-height: 600px">
+    <div class="modal-header" style="border-bottom: none">
+      <h5 class="modal-title ms-1">Your Goals</h5>
+      <button type="button" style="font-size: 14pt" class="zoom darken btn border-none shadow-none close bg-white"
+        data-dismiss="modal" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body h-100 px-4" style="min-height: 100%">
+      <div class="card-body pt-0" *ngIf="status === 'found'">
+        <div class="d-flex">
+          <i class="ri-calendar-2-fill" style="font-size: 24pt"></i>
+          <div class="my-auto ms-3">
+            <div class="h-100">
+              <h5 class="mb-0">IELTS Test Date</h5>
+
+            </div>
+          </div>
+          <p class="text-sm text-secondary ms-auto me-3 my-auto">Booked</p>
+          <div class="form-check form-switch my-auto" >
+            <input [checked]="goalService.goals.goalDate" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault1" />
+          </div>
+        </div>
+        <div class="ps-5 pt-3 ms-3">
+          <p class="mb-0 text-sm">
+            The date you plan to give your IELTS exam.
+          </p>
+          <div class="d-sm-flex bg-gray-100 border-radius-lg p-2 my-4">
+            <p class="text-sm font-weight-bold my-auto ps-sm-2">
+              Current Test Date
+            </p>
+            <input class="form-control form-control-sm ms-sm-auto mt-sm-0 mt-2 w-sm-20 w-80" type="date"  value="{{goalService.goals.targateDate}}"/>
+          </div>
+        </div>
+        <hr class="horizontal dark" />
+        <div class="d-flex">
+          <i class="ri-focus-2-fill" style="font-size: 24pt"></i>
+          <div class="my-auto ms-3">
+            <div class="h-100">
+              <h5 class="mb-0">Target Band Score</h5>
+
+            </div>
+          </div>
+        </div>
+        <div class="ps-5 pt-3 ms-3">
+          <p class="mb-0 text-sm">
+            Set your target band score for each module that you wish to achieve in your IETLS Test.
+          </p>
+          <ng-container *ngFor="
+              let module of modules
+            ">
+            <div class="d-sm-flex bg-gray-100 border-radius-lg p-2 my-4">
+              <p class="text-sm font-weight-bold my-auto ps-sm-2">
+                {{ module.text }}
+              </p>
+              <input class="form-control form-control-sm ms-sm-auto mt-sm-0 mt-2 w-sm-20 w-80" type="number" min="6"
+                max="9" step="0.5" placeholder="6.0" value="{{ module.score }}"/>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="card-footer" *ngIf="status === 'found'">
+        <div class="swal2-actions">
+          <button type="button" (click)="submit()" class="swal2-confirm btn bg-gradient-success" style="display: inline-block" aria-label="">
+            Save
+          </button>
+          <button type="button" (click)="close()" class="swal2-cancel btn bg-gradient-danger" style="display: inline-block"
+            aria-label="">
+            Cancel
+          </button>
+          <div class="swal2-loader"></div>
+        </div>
+      </div>
+
+      <app-comm-loading *ngIf="status === 'loading'"></app-comm-loading>
+      <app-comm-err-500 *ngIf="status === 'error'"></app-comm-err-500>
+    </div>
+  </div>
+</app-basic-modal>

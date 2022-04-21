@@ -1,0 +1,14 @@
+<app-basic-modal>
+  <div class="modal-content" style="min-height: 300px">
+    <div class="modal-header" style="border-bottom: none">
+      <h5 class="modal-title ms-1">Dictionary</h5>
+      <button type="button" style="font-size: 14pt" class="zoom darken btn border-none shadow-none close bg-white"
+        data-dismiss="modal" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body h-100 px-4" style="min-height: 100%">
+      <dictionaryInfo [(label)]="data.id" [(id)]="data.id"></dictionaryInfo>
+  </div>
+</div>
+</app-basic-modal>

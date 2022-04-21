@@ -7,7 +7,7 @@
 
     <app-comm-loading *ngIf="loadingPracticeTestList"></app-comm-loading>
     <ul class="list-group ">
-      <ng-container *ngFor="let item of practiceTestList | async as list">
+      <ng-container *ngFor="let item of practiceTestList | async as list; let i = index">
         <li
         class="list-group-item cursor-pointer border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg darken"
         (click)="onTestSelection(item)"
@@ -19,8 +19,7 @@
           <i class="ri-article-fill" style="font-size: 13pt;"></i>
           </div>
           <div class="d-flex flex-column">
-            <h6 class="mb-1 text-dark text-sm">{{item.test_seriese_name}}</h6>
-            <span class="text-xs font-weight-bold">2 Attempts Left </span>
+            <h6 class="mb-1 text-dark text-sm">Test {{i+1}}</h6>
           </div>
         </div>
         <div class="d-flex">
@@ -36,4 +35,3 @@
     </ul>
   </div>
 </div>
-

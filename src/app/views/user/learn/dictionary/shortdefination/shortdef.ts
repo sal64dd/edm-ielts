@@ -10,13 +10,11 @@ import {
   Output,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DictionaryServices } from 'src/app/services/api/dictionary.service';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { CommonService } from 'src/app/services/common.service';
+import { DictionaryServices } from 'src/app/services/dictionary.service';
 
 @Component({
   selector: 'shortdef',
-  template: `{{toTitleCase(pronunciations.definitions)}}`,
+  template: `{{ toTitleCase(pronunciations.definitions) }}`,
 })
 export class ShortDefComponent implements OnChanges, OnInit {
   @Input() label: string;
@@ -24,16 +22,16 @@ export class ShortDefComponent implements OnChanges, OnInit {
   @Input() id: string;
   @Output() idChange = new EventEmitter<string>();
 
-  @ViewChild('audio') audio;
+  @ViewChild('audio') audio: ElementRef;
 
-  toTitleCase(str) {
+  toTitleCase(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   processing = true;
   datas: any;
   audioPlay: any = true;
-  pronunciations = {
+  pronunciations: any = {
     dialects: '',
     phoneticNotation: '',
     phoneticSpelling: '',
@@ -50,11 +48,7 @@ export class ShortDefComponent implements OnChanges, OnInit {
 
   constructor(
     public dictionaryApi: DictionaryServices,
-    private iab: InAppBrowser,
-    public comm: CommonService
-  ) {
-
-  }
+  ) {}
   ngOnInit(): void {
     this.processing = true;
     console.log(this.label);
@@ -71,7 +65,6 @@ export class ShortDefComponent implements OnChanges, OnInit {
     this.audio.nativeElement.play();
 
     console.log(this.pronunciations.audioFile);
-
   }
 
   getSearchResult() {
@@ -84,7 +77,7 @@ export class ShortDefComponent implements OnChanges, OnInit {
         try {
           pronunciations =
             this.datas.results[0].lexicalEntries[0].entries[0].pronunciations.filter(
-              (data) => data.audioFile != undefined
+              (data: any) => data.audioFile != undefined
             );
           console.log(pronunciations);
         } catch (err) {}
@@ -155,7 +148,6 @@ export class ShortDefComponent implements OnChanges, OnInit {
       (err) => {
         console.log(err);
         this.processing = false;
-        this.comm.Toast(this.comm.commonError(err));
       }
     );
   }

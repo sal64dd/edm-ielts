@@ -6,16 +6,22 @@ import { Routes } from '@angular/router';
 import { EdmCommonModule } from 'src/app/components/common/ed-common.module';
 import { ModuleElemComponent } from './components/module-elem/module-elem.component';
 import { QuickTestComponent } from './components/quick-test/quick-test.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export const routes: Routes = [
   { path: '', component: DashboardUserV2Component },
-]
+];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), EdmCommonModule],
+  imports: [CommonModule, RouterModule.forChild(routes), EdmCommonModule, NgbModule],
   exports: [],
-  declarations: [DashboardUserV2Component, ModuleElemComponent, QuickTestComponent],
+  declarations: [
+    DashboardUserV2Component,
+    ModuleElemComponent,
+    QuickTestComponent,
+  ],
   providers: [],
-  bootstrap:[]
+  bootstrap: [],
 })
-export class DashboardUserModule { }
+export class DashboardUserModule {}
